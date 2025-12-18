@@ -1,8 +1,14 @@
 import streamlit as st
 import pandas as pd
 
+from data_quality.validators import (
+    validate_schema,
+    validate_types,
+    validate_status_domain,
+)
 from data_quality.schema import EXPECTED_COLUMNS
-from data_quality.validators import validate_schema, validate_types
+from data_quality.transforms import apply_transforms
+
 
 st.title("Upload de CSV - Pedidos")
 
@@ -22,6 +28,7 @@ if file:
 
         schema_errors = validate_schema(df, EXPECTED_COLUMNS)
         type_errors = validate_types(df, EXPECTED_COLUMNS)
+        status_errors = validate_status_domain(df)
 
         if type_errors:
             st.error("Erros de tipo de dados encontrados:")
@@ -29,10 +36,7 @@ if file:
                 st.write(f"❌ {err}")
             st.stop()
 
-        st.success("Tipos de dados validados com sucesso ✅")
-
-
-        st.success("Tipos de dados validados com sucesso ✅")
+        st.success("Tipos de dados validados com sucesso!")
 
 
         if schema_errors:
@@ -41,7 +45,18 @@ if file:
                 st.write(f"- {err}")
             st.stop()
 
-        st.success("Schema validado com sucesso ✅")
+        st.success("Schema validado com sucesso!")
+
+        if status_errors:
+            st.error("Erro de domínio do status:")
+            for e in status_errors:
+                st.write(f"❌ {e}")
+            st.stop()
+
+        st.success("Dados validados e transformados com sucesso!")
+
+
+        df_transformed = apply_transforms(df)
 
     except Exception as e:
         st.error("Erro ao processar o arquivo CSV")

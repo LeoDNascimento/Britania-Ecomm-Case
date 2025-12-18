@@ -1,3 +1,25 @@
+def validate_status_domain(df):
+    valid_status = {
+        "PENDENTE", "PENDING",
+        "APROVADO", "APPROVED",
+        "CANCELADO", "CANCELED", "CANCELLED", 
+        "HANDLING",
+        "PAYMENT-APPROVED"
+    }
+
+    errors = []
+
+    for idx, value in enumerate(df["status"]):
+        line_number = idx
+        status = str(value).strip().upper()
+
+        if status not in valid_status:
+            errors.append(
+                f"Linha {line_number}: status inválido ('{value}')"
+            )
+
+    return errors
+
 def validate_types(df, expected_columns):
     errors = []
 
