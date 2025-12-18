@@ -1,0 +1,84 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# =========================
+# Poetry
+# =========================
+.poetry/
+poetry.lock.backup
+
+# =========================
+# Pytest / Coverage
+# =========================
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# =========================
+# Streamlit
+# =========================
+.streamlit/
+*.log
+
+# =========================
+# Environment variables
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Docker
+# =========================
+*.pid
+docker-compose.override.yml
+
+# Docker volumes (local only, safety)
+pgdata/
+
+# =========================
+# OS / Editor
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# =========================
+# Data / Outputs
+# =========================
+*.csv
+*.parquet
+*.xlsx
+
+# =========================
+# Build artifacts
+# =========================
+build/
+dist/
+*.egg-info/
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+
+# =========================
+# Misc
+# =========================
+.cache/

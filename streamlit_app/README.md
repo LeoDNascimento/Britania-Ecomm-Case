@@ -1,5 +1,3 @@
-# CASE BRITANIA - ECOMM
-
 # Streamlit – Upload, Data Quality & Transformações
 
 Este módulo é responsável pela **camada de apresentação e validação de dados** do projeto.  

@@ -2,8 +2,6 @@
 
 Este módulo é responsável pela **camada analítica do projeto**, utilizando **PostgreSQL + SQL puro** para organizar os dados em camadas conceituais **Raw, Silver e Gold**.
 
-A abordagem prioriza **simplicidade, clareza e reprodutibilidade**, evitando ferramentas desnecessárias para um cenário de baixa complexidade.
-
 ---
 
 ## Objetivo
