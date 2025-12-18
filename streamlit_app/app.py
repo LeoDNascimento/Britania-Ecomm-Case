@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+from services.api_client import send_pedido
+
 
 from data_quality.validators import (
     validate_schema,
@@ -63,8 +65,22 @@ if file:
 
         if can_send and df_transformed is not None:
             if st.button("Enviar pedidos"):
-                st.info("Envio iniciado...")
-                st.success("Envio concluído (simulação) ✅")
+                success = 0
+                errors = 0
+
+                with st.spinner("Enviando pedidos..."):
+                    for _, row in df_transformed.iterrows():
+                        pedido = row.to_dict()
+
+                        try:
+                            send_pedido(pedido)
+                            success += 1
+                        except Exception as e:
+                            errors += 1
+                            st.error(f"Erro ao enviar pedido {pedido['id_pedido']}: {e}")
+
+                st.success(f"Envio concluído! Sucesso: {success}, Erros: {errors}")
+
 
     except Exception as e:
         st.error("Erro ao processar o arquivo CSV")

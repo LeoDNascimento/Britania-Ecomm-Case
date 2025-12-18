@@ -1,11 +1,13 @@
-# 📊 Streamlit – Upload, Data Quality & Transformações
+# CASE BRITANIA - ECOMM
+
+# Streamlit – Upload, Data Quality & Transformações
 
 Este módulo é responsável pela **camada de apresentação e validação de dados** do projeto.  
 Ele permite o upload de arquivos CSV, aplica **validações de Data Quality** e executa **transformações padronizadas**, liberando o envio dos dados **apenas quando todos os critérios são atendidos**.
 
 ---
 
-## 🎯 Objetivo
+##  Objetivo
 
 - Receber arquivos CSV de pedidos
 - Garantir **qualidade dos dados antes da ingestão**
@@ -14,9 +16,9 @@ Ele permite o upload de arquivos CSV, aplica **validações de Data Quality** e 
 
 ---
 
-## 🧱 Funcionalidades
+##  Funcionalidades
 
-### 📥 Upload de CSV
+###  Upload de CSV
 - Interface gráfica para seleção de arquivos `.csv`
 - Leitura tolerante a formatos brasileiros/europeus:
   - Separador de colunas: `;`
@@ -25,7 +27,7 @@ Ele permite o upload de arquivos CSV, aplica **validações de Data Quality** e 
 
 ---
 
-### ✅ Validações de Data Quality
+### Validações de Data Quality
 
 As validações são executadas **em camadas**, interrompendo o fluxo ao primeiro erro identificado.
 
