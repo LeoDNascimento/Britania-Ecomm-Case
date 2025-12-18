@@ -65,6 +65,8 @@ api/
 ├── pyproject.toml
 └── README.md
 
+```
+
 ## Endpoints Disponíveis
 
 ### Healthcheck
