@@ -4,3 +4,8 @@ from app.routes import router
 app = FastAPI(title="Pedidos API")
 
 app.include_router(router)
+
+@app.get("/")
+def healthcheck():
+    return {"status": "ok"}
+
