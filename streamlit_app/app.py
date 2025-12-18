@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 from services.api_client import send_pedido
 
-
 from data_quality.validators import (
     validate_schema,
     validate_types,

@@ -1,31 +1,35 @@
 FROM python:3.12-slim
 
-# Diretório de trabalho
+# Evita arquivos .pyc e buffer no stdout
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
 WORKDIR /app
 
-# Instala dependências de sistema necessárias
+# Instalar dependências de sistema
 RUN apt-get update && apt-get install -y \
-    gcc \
-    libpq-dev \
+    build-essential \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Instala Poetry
-RUN pip install poetry
+# Instalar Poetry
+RUN curl -sSL https://install.python-poetry.org | python3 -
+ENV PATH="/root/.local/bin:$PATH"
 
-# Desativa virtualenv dentro do container
+# Copiar arquivos de dependência primeiro (cache de build)
+COPY pyproject.toml poetry.lock* /app/
+
+# Configurar Poetry para NÃO criar virtualenv
 RUN poetry config virtualenvs.create false
 
-# Copia arquivos de dependência
-COPY pyproject.toml poetry.lock ./
+# Instalar dependências
+RUN poetry install --no-interaction --no-ansi --no-root
 
-# Instala dependências
-RUN poetry install --no-interaction --no-ansi
+# Copiar código da aplicação
+COPY app /app/app
 
-# Copia o código da aplicação
-COPY app ./app
-
-# Expõe a porta da API
+# Expor porta
 EXPOSE 8000
 
 # Comando de inicialização
-CMD ["poetry", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "]()
+CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
