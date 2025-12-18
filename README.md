@@ -7,17 +7,26 @@ simulando um cenário real de e-commerce com ingestão, persistência, camada an
 
 ## Visão Geral da Arquitetura
 
-CSV Upload (Streamlit)
-│
-▼
-API FastAPI
-│
-▼
-PostgreSQL
-(Raw / Silver / Gold)
-│
-▼
-Dataviz (Streamlit)
+┌──────────────────────────┐
+│   CSV Upload (Streamlit) │
+└─────────────┬────────────┘
+              │
+              ▼
+┌──────────────────────────┐
+│      API FastAPI         │
+└─────────────┬────────────┘
+              │
+              ▼
+┌──────────────────────────┐
+│      PostgreSQL          │
+│  Raw • Silver • Gold     │
+└─────────────┬────────────┘
+              │
+              ▼
+┌──────────────────────────┐
+│   Dataviz (Streamlit)    │
+└──────────────────────────┘
+
 
 
 ### Componentes
