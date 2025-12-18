@@ -9,6 +9,8 @@ from data_quality.validators import (
 from data_quality.schema import EXPECTED_COLUMNS
 from data_quality.transforms import apply_transforms
 
+can_send = False
+df_transformed = None
 
 st.title("Upload de CSV - Pedidos")
 
@@ -54,9 +56,15 @@ if file:
             st.stop()
 
         st.success("Dados validados e transformados com sucesso!")
-
-
+        
         df_transformed = apply_transforms(df)
+        can_send = True
+        st.dataframe(df_transformed)
+
+        if can_send and df_transformed is not None:
+            if st.button("Enviar pedidos"):
+                st.info("Envio iniciado...")
+                st.success("Envio concluído (simulação) ✅")
 
     except Exception as e:
         st.error("Erro ao processar o arquivo CSV")
