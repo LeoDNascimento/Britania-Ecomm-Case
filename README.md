@@ -71,17 +71,13 @@ Dataviz (Gold): http://localhost:8502
 
 Cada módulo possui documentação própria:
 
-Streamlit (Upload & Validação)
-streamlit_app/README.md
+[Streamlit (Upload & Validação)](./streamlit_app/README.md)
 
-API FastAPI
-api/README.md
+[Documentação da API](./api/README.md)
 
-Data Lake (Raw / Silver / Gold)
-data_lake/README.md
+[Documentação do Data Lake](./data_lake/README.md)
 
-📊 Dataviz & Exportação CSV
-dataviz/README.md
+[Documentação do Dataviz](./dataviz/README.md)
 
 ## Testes
 
