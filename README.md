@@ -6,7 +6,7 @@ simulando um cenário real de e-commerce com ingestão, persistência, camada an
 ---
 
 ## Visão Geral da Arquitetura
-
+```text
 ┌──────────────────────────┐
 │   CSV Upload (Streamlit) │
 └─────────────┬────────────┘
@@ -26,7 +26,7 @@ simulando um cenário real de e-commerce com ingestão, persistência, camada an
 ┌──────────────────────────┐
 │   Dataviz (Streamlit)    │
 └──────────────────────────┘
-
+```
 
 
 ### Componentes
