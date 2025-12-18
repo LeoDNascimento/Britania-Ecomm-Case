@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   postgres:
     image: postgres:15
@@ -39,6 +37,16 @@ services:
       - api
     environment:
       API_URL: http://api:8000
+
+  dataviz:
+    build: ./dataviz
+    container_name: dataviz
+    ports:
+      - "8502:8501"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgresql://admin:admin@postgres:5432/orders
 
 volumes:
   pgdata:
