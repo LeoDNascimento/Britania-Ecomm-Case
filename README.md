@@ -46,12 +46,20 @@ Garante a presença **exata** das colunas esperadas:
 
 ---
 
+
+## Tecnologias Utilizadas
+
+- **Python 3.12.6**
+- **Streamlit**
+- **Poetry**
+- **Docker**
+
+
 #### 2. Validação de Tipos
 Valida **linha a linha** se os dados podem ser convertidos para os tipos esperados.
 
 Exemplo de erro reportado:
 Linha 12: valor inválido na coluna 'valor'
-
 
 ---
 

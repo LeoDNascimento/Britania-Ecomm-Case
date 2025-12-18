@@ -34,7 +34,7 @@ PostgreSQL (pedidos_raw)
 
 ## Tecnologias Utilizadas
 
-- **Python 3.10+**
+- **Python 3.12.6**
 - **FastAPI**
 - **Pydantic**
 - **PostgreSQL**
