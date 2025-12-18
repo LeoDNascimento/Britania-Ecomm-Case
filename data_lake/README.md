@@ -51,23 +51,27 @@ Script: 1_bronze.sql
 
 Responsável por armazenar os pedidos sem transformação, servindo como fonte de verdade.
 
+---
+
 ⚪ Camada Silver
 View: pedidos_silver
 Script: 2_silver.sql
 
 Aplica padronizações leves, preparando os dados para análises.
 
+---
+
 🟡 Camada Gold
 View: pedidos_por_status
 Script: 3_gold.sql
 
-Camada analítica final, com métricas agregadas.
+    Camada analítica final, com métricas agregadas.
 
-Esta view atende diretamente ao requisito de:
+    Esta view atende diretamente ao requisito de:
 
-- Total de pedidos por status
+    - Total de pedidos por status
 
-- Valor total por status
+    - Valor total por status
 
 # Execução dos Scripts SQL
 ## Execução automática via Docker
@@ -81,15 +85,15 @@ Os scripts são executados automaticamente na primeira inicialização do Postgr
 ## Execução manual (modo desenvolvimento)
 
 Durante o desenvolvimento, os scripts podem ser executados diretamente no container:
-
+```
 docker exec -i postgres psql -U admin -d orders < data_lake/sql/1_bronze.sql
 docker exec -i postgres psql -U admin -d orders < data_lake/sql/2_silver.sql
 docker exec -i postgres psql -U admin -d orders < data_lake/sql/3_gold.sql
-
+```
 Ou todos de uma vez:
-
+```
 cat data_lake/sql/*.sql | docker exec -i postgres psql -U admin -d orders
-
+```
 
 # Atualização dos Dados
 
