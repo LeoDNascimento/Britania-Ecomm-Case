@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from services.api_client import send_pedido
+from services.api_client import send_pedido, send_pedido_bulky
 
 from data_quality.validators import (
     validate_schema,
@@ -68,15 +68,25 @@ if file:
                 errors = 0
 
                 with st.spinner("Enviando pedidos..."):
-                    for _, row in df_transformed.iterrows():
-                        pedido = row.to_dict()
+                    # ENVIO LINHA A LINHA
+                    # for _, row in df_transformed.iterrows():
+                    #     pedido = row.to_dict()
 
-                        try:
-                            send_pedido(pedido)
-                            success += 1
-                        except Exception as e:
-                            errors += 1
-                            st.error(f"Erro ao enviar pedido {pedido['id_pedido']}: {e}")
+                    #     try:
+                    #         send_pedido(pedido)
+                    #         success += 1
+                    #     except Exception as e:
+                    #         errors += 1
+                    #         st.error(f"Erro ao enviar pedido {pedido['id_pedido']}: {e}")
+
+                    #Bulky Envio
+                    try:
+                        result = send_pedido_bulky(
+                            df_transformed.to_dict(orient="records")
+                        )
+                        st.success(result["message"])
+                    except RuntimeError as e:
+                        st.error(str(e))
 
                 st.success(f"Envio concluído! Sucesso: {success}, Erros: {errors}")
 
